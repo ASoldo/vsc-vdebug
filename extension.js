@@ -23,9 +23,9 @@ function activate(context) {
 
 		const edit = new vscode.WorkspaceEdit();
 
-		let re = new RegExp(` v-debug:wire| (v-debug:bgcolor="'[a-z0-9 ]*'")| (v-debug:[a-z]*="'[a-z0-9 ]*'")`, 'g');
+		let re = new RegExp(`[\n]*[\s+]*v-debug:wire[\s+$]*[\n+$]*|[\n]*[\s+]*(v-debug:bgcolor="'[a-z0-9 ]*'")[\s+$]*[\n+$]*|[\n]*[\s+]*(v-debug:[a-z]*="'[a-z0-9 ]*'")[\s+$]*[\n+$]*`, 'g');
 
-		if(vscode.window.activeTextEditor.document.getText().match(` v-debug:wire| (v-debug:bgcolor="'[a-z0-9 ]*'")| (v-debug:[a-z]*="'[a-z0-9 ]*'")`))
+		if(vscode.window.activeTextEditor.document.getText().match(`v-debug:wire|(v-debug:bgcolor="'[a-z0-9 ]*'")|(v-debug:[a-z]*="'[a-z0-9 ]*'")`))
 		{			
 			edit.replace(
 				document.uri, 
@@ -53,3 +53,5 @@ module.exports = {
 	activate,
 	deactivate
 }
+// [\n]*[\s+]*v-debug:wire[\s+$]*[\n+$]*
+//[\n]*[\s+]*v-debug:wire[\s+$]*[\n+$]*|[\n]*[\s+]*(v-debug:bgcolor="'[a-z0-9 ]*'")[\s+$]*[\n+$]*|[\n]*[\s+]*(v-debug:[a-z]*="'[a-z0-9 ]*'")[\s+$]*[\n+$]*
