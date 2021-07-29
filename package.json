@@ -2,7 +2,7 @@
 	"name": "vsc-vdebug",
 	"displayName": "vsc-vdebug",
 	"description": "Vue VDebug Utility",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"publisher":"Spear-X",
 	"icon": "images/vsc-vdebug.png",
 	"engines": {

@@ -19,13 +19,12 @@ function activate(context) {
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('vsc-vdebug.vsc-vdebug:clean', function () {
 		const {document} = vscode.window.activeTextEditor;
-		// const firstLine = document.lineAt(0);
 
 		const edit = new vscode.WorkspaceEdit();
 
-		let re = new RegExp(`[\t+]*[\n+]*[\s+]*v-debug:wire[\s+$]*[\n+$]*[\t+$]*|[\t+]*[\n]*[\s+]*(v-debug:bgcolor="'[a-z0-9 ]*'")[\s+$]*[\n+$]*[\t+$]*|[\t+]*[\n]*[\s+]*(v-debug:[a-z]*="'[a-z0-9 ]*'")[\s+$]*[\n+$]*[\t+$]*|[\t+]*[\n]*[\s+]*(v-debug:[a-z]*="'[ˆ#a-z0-9 ]*'")[\s+$]*[\n+$]*[\t+$]*`, 'g');
+		let re = /\s*v-debug:wire\s*|\s*(v-debug:bgcolor="'[a-z0-9]*'")\s*|\s*(v-debug:[a-z]*="'[a-z0-9]*'")\s*|\s*(v-debug:[a-z]*="'[ˆ#a-z0-9]*'")\s*/gm;
 
-		if(vscode.window.activeTextEditor.document.getText().match(`v-debug:wire|(v-debug:bgcolor="'[a-z0-9 ]*'")|(v-debug:[a-z]*="'[a-z0-9 ]*'")`))
+		if(vscode.window.activeTextEditor.document.getText().match(`v-debug:wire|(v-debug:bgcolor="'[a-z0-9]*'")|(v-debug:[a-z]*="'[a-z0-9]*'")|(v-debug:[a-z]*="'[ˆ#a-z0-9]*'")`))
 		{			
 			edit.replace(
 				document.uri, 
@@ -53,3 +52,6 @@ module.exports = {
 	activate,
 	deactivate
 }
+
+
+// [\t+]*[\n+]*[\s+]*v-debug:wire[\s+$]*[\n+$]*[\t+$]*|[\t+]*[\n]*[\s+]*(v-debug:bgcolor="'[a-z0-9]*'")[\s+$]*[\n+$]*[\t+$]*|[\t+]*[\n]*[\s+]*(v-debug:[a-z]*="'[a-z0-9]*'")[\s+$]*[\n+$]*[\t+$]*|[\t+]*[\n]*[\s+]*(v-debug:[a-z]*="'[ˆ#a-z0-9]*'")[\s+$]*[\n+$]*[\t+$]*
