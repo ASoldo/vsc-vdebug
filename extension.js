@@ -22,7 +22,7 @@ function activate(context) {
 
 		const edit = new vscode.WorkspaceEdit();
 
-		let re = /\s*v-debug:wire\s*|\s*(v-debug:bgcolor="'[a-z0-9]*'")\s*|\s*(v-debug:[a-z]*="'[a-z 0-9]*'")\s*|\s*(v-debug:[a-z]*="'[ˆ#a-z0-9]*'")\s*/gm;
+		let re = /\s*v-debug:wire|\s*(v-debug:bgcolor="'[a-z0-9]*'")|\s*(v-debug:[a-z]*="'[a-z 0-9]*'")|\s*(v-debug:[a-z]*="'[ˆ#a-z0-9]*'")/gm;
 
 		if(vscode.window.activeTextEditor.document.getText().match(`v-debug:wire|(v-debug:bgcolor="'[a-z0-9]*'")|(v-debug:[a-z]*="'[a-z0-9]*'")|(v-debug:[a-z]*="'[ˆ#a-z0-9]*'")`))
 		{			
